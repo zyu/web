@@ -22,7 +22,7 @@ gulp.task('styles', () => {
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.sourcemaps.write())
-    .pipe(gulp.dest('.tmp/styles'))
+    .pipe(gulp.dest('app/styles'))
     .pipe(reload({stream: true}));
 });
 
@@ -109,6 +109,19 @@ gulp.task('serve', () => {
     gulp.watch('app/fonts/**/*', ['fonts']);
     gulp.watch('bower.json', ['wiredep', 'fonts']);
   });
+});
+
+
+gulp.task('usemin', function() {
+  return gulp.src('app/test.html')
+    .pipe($.usemin({
+      css: [ $.cssnano({safe: true, autoprefixer: false}) ,$.rev() ],
+      html: [ $.htmlmin({collapseWhitespace: true})],
+      js: [ $.uglify(), $.rev() ],
+      inlinejs: [ $.uglify() ],
+      inlinecss: [ $.cssnano({safe: true, autoprefixer: false}) ]
+    }))
+    .pipe(gulp.dest('build/'));
 });
 
 gulp.task('serve:dist', ['default'], () => {

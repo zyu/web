@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>測試htmljs css 壓縮</title>
+
+<!-- build:js scripts/main.js-->
+	<script type="text/javascript" src="./scripts/main.js"></script>
+
+	<!-- endbuild -->
+
+	<!-- build:js scripts/foo.js-->
+	<script type="text/javascript" src="./scripts/foo.js"></script>
+
+	<!-- endbuild -->
+
+
+
+<!-- build:js scripts/m.js-->
+	<script type="text/javascript" src="./scripts/main.js"></script>
+
+	<script type="text/javascript" src="./scripts/foo.js"></script>
+
+	<!-- endbuild -->
+
+	<!-- build:inline.js -->
+	<script type="text/javascript">
+	function doo(){
+		alert(1);
+	}
+	</script>
+	<!-- build:inline.js -->
+</head>
+<body>
+	
+</body>
+</html>
